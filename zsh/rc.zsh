@@ -79,3 +79,5 @@ eval "$(lua ~/scripts/z.lua/z.lua --init zsh enhanced once fzf)"
 
 export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+
+eval "$(starship init zsh)"

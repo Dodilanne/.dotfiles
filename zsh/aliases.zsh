@@ -11,6 +11,9 @@ alias v=vim
 alias n=nvim
 alias cat=bat 
 
+bindkey -v
+bindkey '^R' history-incremental-search-backward
+
 bindkey -s ^f "tmux_sessionizer\n"
 
 take() {
