@@ -11,6 +11,8 @@ source_if_exists $DOTFILES/zsh/aliases.zsh
 source_if_exists /usr/local/etc/profile.d/z.sh
 source_if_exists /opt/homebrew/etc/profile.d/z.sh
 
+source_if_exists $DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
 if type "direnv" > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
