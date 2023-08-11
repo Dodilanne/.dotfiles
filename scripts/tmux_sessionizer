@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
 	selected=$2
 else
-	selected=$(find ~/Documents/intek ~/Documents/personal -mindepth 1 -maxdepth 1 -type d | fzf)
+	selected=$(fd -d 5 -H -E 'node_modules' '(turbo.json)|(\.git$)' ~/Documents | sd '(turbo.json)|(/.git)' '' | uniq | fzf)
 fi
 
 if [[ -z $selected ]]; then
