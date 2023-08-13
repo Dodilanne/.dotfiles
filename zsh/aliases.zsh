@@ -47,3 +47,9 @@ night() {
   spicetify config color_scheme rose-pine
   spicetify apply -y
 }
+
+if hash is_dark_mode 2>/dev/null && is_dark_mode; then
+  export NEOVIM_BACKGROUND="dark"
+else
+  export NEOVIM_BACKGROUND="light"
+fi
