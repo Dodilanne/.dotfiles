@@ -17,6 +17,10 @@ if type "direnv" > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
 
+if type "thefuck" > /dev/null; then
+  eval "$(thefuck --alias)"
+fi
+
 precmd() {
     source $DOTFILES/zsh/aliases.zsh
 }
