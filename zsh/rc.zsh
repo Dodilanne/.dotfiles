@@ -11,8 +11,6 @@ source_if_exists $DOTFILES/zsh/aliases.zsh
 source_if_exists /usr/local/etc/profile.d/z.sh
 source_if_exists /opt/homebrew/etc/profile.d/z.sh
 
-source_if_exists $DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-
 if type "direnv" > /dev/null; then
     eval "$(direnv hook zsh)"
 fi
@@ -21,8 +19,13 @@ if type "thefuck" > /dev/null; then
   eval "$(thefuck --alias)"
 fi
 
-precmd() {
-    source $DOTFILES/zsh/aliases.zsh
+function zvm_after_init() {
+  source $DOTFILES/zsh/aliases.zsh
+}
+
+function zvm_config() {
+  # Disable the cursor style feature
+  ZVM_CURSOR_STYLE_ENABLED=false
 }
 
 export VISUAL=nvim
@@ -87,3 +90,7 @@ export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
 
 eval "$(starship init zsh)"
+
+source_if_exists $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source_if_exists $DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source_if_exists $DOTFILES/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

@@ -11,7 +11,6 @@ alias v=vim
 alias n=nvim
 alias cat=bat 
 
-bindkey -v
 bindkey '^R' history-incremental-search-backward
 
 bindkey -s ^f "tmux_sessionizer\n"
@@ -35,6 +34,7 @@ DARK_COLOR="base16-rose-pine.yml"
 LIGHT_COLOR="base16-rose-pine-dawn.yml"
 
 day() {
+  export NEOVIM_BACKGROUND="light"
   alacritty-colorscheme -V apply $LIGHT_COLOR
   dark-mode off
   spicetify config color_scheme rose-pine-dawn
@@ -42,14 +42,17 @@ day() {
 }
 
 night() {
+  export NEOVIM_BACKGROUND="dark"
   alacritty-colorscheme -V apply $DARK_COLOR
   dark-mode on
   spicetify config color_scheme rose-pine
   spicetify apply -y
 }
 
+# Initialize neovim background flag
 if hash is_dark_mode 2>/dev/null && is_dark_mode; then
   export NEOVIM_BACKGROUND="dark"
 else
   export NEOVIM_BACKGROUND="light"
 fi
+
