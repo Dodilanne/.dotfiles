@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
 	selected=$2
 else
-	selected=$(fd -d 5 -H -E 'node_modules' '(turbo.json)|(\.git)(ignore)?(/)?' ~/Documents | sd '(turbo.json)|(/.git)(ignore)?(/)?' '' | uniq -u | fzf)
+	selected=$(fd -d 5 -H -E 'node_modules' '(turbo.json)|(\.git)(ignore)?(/)?' ~/Documents | sd '(turbo.json)|(/.git)(ignore)?(/)?' '' | sort | uniq | fzf)
 fi
 
 if [[ -z $selected ]]; then
