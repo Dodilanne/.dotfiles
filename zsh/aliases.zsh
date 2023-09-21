@@ -13,7 +13,7 @@ alias cat=bat
 
 bindkey '^R' history-incremental-search-backward
 
-bindkey -s ^f "tmux_sessionizer\n"
+bindkey -s '^f' "tmux_sessionizer\n"
 
 take() {
   mkdir -p $1

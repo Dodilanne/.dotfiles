@@ -94,3 +94,5 @@ eval "$(starship init zsh)"
 source_if_exists $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source_if_exists $DOTFILES/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 source_if_exists $DOTFILES/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+source /Users/dodi/.config/broot/launcher/bash/br
