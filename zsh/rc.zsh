@@ -31,6 +31,8 @@ function zvm_config() {
 export VISUAL=nvim
 export EDITOR=nvim
 
+export HELIX_RUNTIME="$HOME/Documents/personal/helix/runtime"
+
 export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
 
 if type brew &>/dev/null
