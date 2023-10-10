@@ -11,6 +11,9 @@ alias v=vim
 alias n=nvim
 alias cat=bat
 
+# Switch branch with fuzzy finder
+alias gsb="git branch -a | sed 's/remotes\/origin\///g' | tr '* ' '  ' | sort | uniq | fzf | xargs git switch"
+
 bindkey '^R' history-incremental-search-backward
 
 bindkey -s '^f' "tmux_sessionizer\n"
