@@ -16,16 +16,16 @@ if type "direnv" > /dev/null; then
 fi
 
 if type "thefuck" > /dev/null; then
-  eval "$(thefuck --alias)"
+    eval "$(thefuck --alias)"
 fi
 
 function zvm_after_init() {
-  source $DOTFILES/zsh/aliases.zsh
+    source $DOTFILES/zsh/aliases.zsh
 }
 
 function zvm_config() {
-  # Disable the cursor style feature
-  ZVM_CURSOR_STYLE_ENABLED=false
+    # Disable the cursor style feature
+    ZVM_CURSOR_STYLE_ENABLED=false
 }
 
 export VISUAL=nvim
@@ -37,9 +37,9 @@ export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scri
 
 if type brew &>/dev/null
 then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-  autoload -Uz compinit
-  compinit
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
 fi
 
 export NVM_DIR="/Users/dodi/.nvm"
@@ -52,8 +52,8 @@ export PATH=$PATH:$DOTNET_ROOT
 export MONO_BIN=/Library/Frameworks/Mono.framework/Versions/6.12.0/bin
 export PATH=$PATH:$MONO_BIN
 
-export PYENV_ROOT="$HOME/.pyenv" 
-export PATH="$PYENV_ROOT/bin:$PATH" 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 

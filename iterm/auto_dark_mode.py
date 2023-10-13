@@ -7,7 +7,9 @@ async def changeTheme(connection, parts):
     theme_dark = "rose-pine"
     theme_light = "rose-pine-dawn"
 
-    wallpapers_path = "/Users/dodi/Library/CloudStorage/OneDrive-Personal/Photos/Wallpapers/iterm"
+    wallpapers_path = (
+        "/Users/dodi/Library/CloudStorage/OneDrive-Personal/Photos/Wallpapers/iterm"
+    )
 
     bg_image_dark = None  # "bg_dark.jpg"
     bg_image_light = None
@@ -30,12 +32,13 @@ async def changeTheme(connection, parts):
 
 
 async def main(connection):
-
     app = await iterm2.async_get_app(connection)
     initial_theme = await app.async_get_theme()
     await changeTheme(connection, initial_theme)
 
-    async with iterm2.VariableMonitor(connection, iterm2.VariableScopes.APP, "effectiveTheme", None) as mon:
+    async with iterm2.VariableMonitor(
+        connection, iterm2.VariableScopes.APP, "effectiveTheme", None
+    ) as mon:
         while True:
             # Block until theme changes
             theme = await mon.async_get()
@@ -46,4 +49,3 @@ async def main(connection):
 
 
 iterm2.run_forever(main)
-

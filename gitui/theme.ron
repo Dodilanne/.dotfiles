@@ -8,7 +8,7 @@
     disabled_fg: DarkGray,
     diff_line_add: Green,
     diff_line_delete: Red,
-    diff_file_added: LightGreen,
+    diff_file_added: LightGray,
     diff_file_removed: LightRed,
     diff_file_moved: LightMagenta,
     diff_file_modified: Yellow,

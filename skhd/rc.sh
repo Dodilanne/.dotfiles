@@ -5,7 +5,7 @@ alt + shift + ctrl - b : open -a "Google Chrome"
 alt + shift + ctrl - a : open -a "Discord"
 alt + shift + ctrl - r : open -a "Spotify"
 alt + shift + ctrl - s : open -a "Slack"
-alt + shift + ctrl - t : open -a "iTerm"
+alt + shift + ctrl - t : open -a "Alacritty"
 alt + shift + ctrl - g : open -a "GitKraken"
 
 alt + shift + ctrl - z : open -a "Messenger"
