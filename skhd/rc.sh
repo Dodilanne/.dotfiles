@@ -2,7 +2,6 @@ alt + shift + ctrl - f : open -a "Finder"
 alt + shift + ctrl - p : open -a "Postman"
 alt + shift + ctrl - b : open -a "Google Chrome"
 
-alt + shift + ctrl - a : open -a "Discord"
 alt + shift + ctrl - r : open -a "Spotify"
 alt + shift + ctrl - s : open -a "Slack"
 alt + shift + ctrl - t : open -a "Alacritty"
