@@ -36,6 +36,9 @@
     diff_reset_lines: Some(( code: Char('u'), modifiers: ( bits: 0,),)),
     diff_stage_lines: Some(( code: Char('s'), modifiers: ( bits: 0,),)),
 
+    diff_hunk_next: Some(( code: Char('d'), modifiers: ( bits: 2,),)),
+    diff_hunk_prev: Some(( code: Char('u'), modifiers: ( bits: 2,),)),
+
     stashing_save: Some(( code: Char('w'), modifiers: ( bits: 0,),)),
     stashing_toggle_index: Some(( code: Char('m'), modifiers: ( bits: 0,),)),
 
