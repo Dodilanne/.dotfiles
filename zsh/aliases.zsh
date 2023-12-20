@@ -41,16 +41,12 @@ day() {
     export NEOVIM_BACKGROUND="light"
     alacritty-colorscheme -V apply $LIGHT_COLOR
     dark-mode off
-    spicetify config color_scheme rose-pine-dawn
-    spicetify apply -y
 }
 
 night() {
     export NEOVIM_BACKGROUND="dark"
     alacritty-colorscheme -V apply $DARK_COLOR
     dark-mode on
-    spicetify config color_scheme rose-pine
-    spicetify apply -y
 }
 
 # Initialize neovim background flag
