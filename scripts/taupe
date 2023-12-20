@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 
 if [ "$1" == "on" ]; then
-  echo "Entering JAY mode"
-  displayplacer "id:A7254512-D9FB-46D3-AE93-883D98E61166 res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"
-  exit 0
+    if hash is_dark_mode 2>/dev/null && ! is_dark_mode; then
+        echo "Jay is a night owl, disabling light mode..."
+        export NEOVIM_BACKGROUND="dark"
+        alacritty-colorscheme -V apply "base16-rose-pine.yml"
+        dark-mode on
+    fi
+    echo "Jay has poor eyesight, scaling up to 1080p..."
+    displayplacer "id:A7254512-D9FB-46D3-AE93-883D98E61166 res:1920x1080 hz:60 color_depth:8 enabled:true scaling:on origin:(0,0) degree:0"
+    echo "Jay mode enabled."
+    exit 0
 elif [ "$1" == "off" ]; then
-  echo "Exiting JAY mode"
-  displayplacer "id:A7254512-D9FB-46D3-AE93-883D98E61166 res:3008x1692 hz:60 color_depth:8 scaling:on origin:(0,0) degree:0"
-  exit 0
+    echo "Jay has left the building, scaling back to 4k..."
+    displayplacer "id:A7254512-D9FB-46D3-AE93-883D98E61166 res:3008x1692 hz:60 color_depth:8 scaling:on origin:(0,0) degree:0"
+    echo "Jay mode disabled."
+    exit 0
 else
-  echo "Usage: taupe [on|off]"
-  exit 1
+    echo "Usage: taupe [on|off]"
+    exit 1
 fi
