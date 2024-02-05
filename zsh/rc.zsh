@@ -103,3 +103,6 @@ source_if_exists $DOTFILES/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.z
 source /Users/dodi/.config/broot/launcher/bash/br
 
 export PATH="$PATH:/Users/dodi/.aiken/bin"
+
+# opam configuration
+[[ ! -r /Users/dodi/.opam/opam-init/init.zsh ]] || source /Users/dodi/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
