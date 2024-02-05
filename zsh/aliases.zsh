@@ -14,6 +14,7 @@ alias cat=bat
 # Switch branch with fuzzy finder
 alias gsb="git branch -a | sed 's/remotes\/origin\///g' | tr '* ' '  ' | sort | uniq | fzf | xargs git switch"
 alias gl="git log --all --decorate --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
+alias lg="lazygit"
 
 bindkey '^R' history-incremental-search-backward
 
