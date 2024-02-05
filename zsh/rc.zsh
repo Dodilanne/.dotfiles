@@ -73,6 +73,9 @@ export PATH="$PNPM_HOME:$PATH"
 # llvm
 export PATH=/opt/homebrew/opt/llvm/bin:$PATH
 
+# golang
+export PATH=$HOME/go/bin:$PATH
+
 # bun completions
 [ -s "/Users/dodi/.bun/_bun" ] && source "/Users/dodi/.bun/_bun"
 # bun
