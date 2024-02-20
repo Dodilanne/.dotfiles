@@ -4,8 +4,8 @@ import iterm2
 
 
 async def changeTheme(connection, parts):
-    theme_dark = "ayu Dark"
-    theme_light = "ayu Light"
+    theme_dark = "kanagawa_dragon"
+    theme_light = "rose-pine-dawn"
 
     wallpapers_path = (
         "/Users/dodi/Library/CloudStorage/OneDrive-Personal/Photos/Wallpapers/iterm"
