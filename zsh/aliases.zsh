@@ -1,13 +1,14 @@
 alias pn=pnpm
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias gu="gitui"
+alias gf="git fetch"
 alias gvim="nvim --listen 127.0.0.1:55432 ."
 alias b="cd .."
 alias c=clear
 alias ls=eza
 alias lt="eza --tree --long"
 alias ll="eza --long"
-alias v=vim
+alias v=nvim
 alias n=nvim
 alias cat=bat
 
