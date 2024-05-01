@@ -104,3 +104,8 @@ export PATH="$PATH:/Users/dodi/.aiken/bin"
 
 # opam configuration
 [[ ! -r /Users/dodi/.opam/opam-init/init.zsh ]] || source /Users/dodi/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+# ---- FZF -----
+# Set up fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
+# ---- END FZF -----
