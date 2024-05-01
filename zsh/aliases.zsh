@@ -2,6 +2,7 @@ alias pn=pnpm
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias gu="gitui"
 alias gf="git fetch"
+alias gs="git status"
 alias gvim="nvim --listen 127.0.0.1:55432 ."
 alias b="cd .."
 alias c=clear
