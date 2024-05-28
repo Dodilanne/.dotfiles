@@ -18,6 +18,7 @@ alias gl="git log --all --decorate --graph --pretty=format:'%C(yellow)%h %Cred%a
 alias lg="lazygit"
 
 bindkey '^R' history-incremental-search-backward
+bindkey '^y' autosuggest-accept
 
 bindkey -s '^f' "tmux_sessionizer\n"
 
@@ -36,8 +37,8 @@ tmn() {
 }
 
 # colors
-DARK_COLOR="base16-rose-pine.yml"
-LIGHT_COLOR="base16-rose-pine-dawn.yml"
+DARK_COLOR="rose-pine.yaml"
+LIGHT_COLOR="rose-pine-dawn.yaml"
 
 day() {
     export NEOVIM_BACKGROUND="light"
