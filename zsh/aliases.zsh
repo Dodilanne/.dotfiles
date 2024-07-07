@@ -37,7 +37,7 @@ tmn() {
 }
 
 # colors
-DARK_COLOR="rose-pine.yaml"
+DARK_COLOR="lackluster.yaml"
 LIGHT_COLOR="rose-pine-dawn.yaml"
 
 day() {
@@ -51,6 +51,7 @@ night() {
     alacritty-colorscheme -V apply $DARK_COLOR
     dark-mode on
 }
+alias nigth="night"
 
 # Initialize neovim background flag
 if hash is_dark_mode 2>/dev/null && is_dark_mode; then
