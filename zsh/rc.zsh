@@ -44,7 +44,60 @@ source $HOME/.env.sh
 export VISUAL=nvim
 export EDITOR=nvim
 
-export PATH="$PATH:$DOTFILES/scripts/"
+export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
+
+if type brew &>/dev/null
+then
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
+fi
+
+export DOTNET_ROOT=/usr/local/share/dotnet/x64
+export PATH=$PATH:$DOTNET_ROOT
+
+export MONO_BIN=/Library/Frameworks/Mono.framework/Versions/6.12.0/bin
+export PATH=$PATH:$MONO_BIN
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+
+# heroku autocomplete setup
+HEROKU_AC_ZSH_SETUP_PATH=/Users/dodi/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+
+export ANDROID_SDK="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_SDK/platform-tools:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# llvm
+export PATH=/opt/homebrew/opt/llvm/bin:$PATH
+
+# golang
+export PATH=$HOME/go/bin:$PATH
+
+# bun completions
+[ -s "/Users/dodi/.bun/_bun" ] && source "/Users/dodi/.bun/_bun"
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
+export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
+
+export PATH="$PATH:/Users/dodi/.aiken/bin"
+
+# opam configuration
+[[ ! -r /Users/dodi/.opam/opam-init/init.zsh ]] || source /Users/dodi/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
+
+export NVM_DIR="${HOME}/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Keybindings
 bindkey -v
@@ -109,7 +162,20 @@ tmn() {
     tmux new -s $1
 }
 
+# AWS config
+export AWS_SDK_LOAD_CONFIG=1
+export AWS_PROFILE=sdk-dev-developer
+export PASSPHRASE=Intekplus
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 eval $(thefuck --alias f)
+
+# pnpm
+export PNPM_HOME="/Users/dodi/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
