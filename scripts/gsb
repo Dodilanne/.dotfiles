@@ -1,14 +1,36 @@
 #!/usr/bin/env bash
 
+file="$HOME/var/state/gsb.txt"
+touch "$file"
+
+repo=$(git rev-parse --show-toplevel)
+
+fuzzy_branch() {
+  git branch -a | sed 's/remotes\/origin\///g' | tr '* ' '  ' | sort | uniq | fzf
+}
+
 if [[ $# -eq 1 ]]; then
-	selected=$1
+  if [[ "$1" = "-" ]]; then
+    prev=$(awk -F '=' -v repo="$repo" '{if ($1 == repo) print $NF}' $file)
+    if [[ -z $prev ]]; then
+      selected=$(fuzzy_branch)
+    else
+      selected=$prev
+    fi
+  else
+    selected=$1
+  fi
 else
-	selected=$(git branch -a | sed 's/remotes\/origin\///g' | tr '* ' '  ' | sort | uniq | fzf)
+  selected=$(fuzzy_branch)
 fi
 
 if [[ -z $selected ]]; then
   echo "No branch selected. Skipping..."
-	exit 0
+  exit 0
 fi
+
+curr=$(git branch --show-current)
+sed -i '' "/^${repo//\//\\/}=.*/d" "$file"
+echo "$repo=$curr" >> "$file"
 
 git switch $selected
