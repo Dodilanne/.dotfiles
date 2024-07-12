@@ -1,5 +1,19 @@
 #!/usr/bin/env bash
 
+# [g]it [s]witch [b]ranch
+# A utility script to speed up git branch switching
+#
+# Usage
+#
+# Fuzzy find the branch to switch to
+# $ gsb 
+#
+# Specify the branch to switch to
+# $ gsb BRANCH_NAME
+#
+# Go to the last checked out branch
+# $ gsb -
+
 file="$HOME/var/state/gsb.txt"
 touch "$file"
 
