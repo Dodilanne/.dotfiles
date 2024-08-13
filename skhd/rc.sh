@@ -5,6 +5,7 @@ alt + shift + ctrl - n : open -a "Obsidian"
 
 alt + shift + ctrl - r : open -a "Music"
 alt + shift + ctrl - s : open -a "Slack"
+alt + shift + ctrl - v : open -a "Discord"
 alt + shift + ctrl - t : open -a "Alacritty"
 alt + shift + ctrl - g : open -a "GitKraken"
 
