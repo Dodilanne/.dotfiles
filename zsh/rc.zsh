@@ -88,6 +88,7 @@ export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
 
 export PATH="$PATH:/Users/dodi/.aiken/bin"
+export PATH="$PATH:$HOME/Documents/intek/bin"
 
 # opam configuration
 [[ ! -r /Users/dodi/.opam/opam-init/init.zsh ]] || source /Users/dodi/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
@@ -162,6 +163,23 @@ tmn() {
     tmux new -s $1
 }
 
+# clors
+DARK_COLOR="kanagawa-dragon.yaml"
+LIGHT_COLOR="rose-pine-dawn.yaml"
+
+day() {
+    export NEOVIM_BACKGROUND="light"
+    alacritty-colorscheme -V apply $LIGHT_COLOR
+    dark-mode off
+}
+
+night() {
+    export NEOVIM_BACKGROUND="dark"
+    alacritty-colorscheme -V apply $DARK_COLOR
+    dark-mode on
+}
+alias nigth="night"
+
 # AWS config
 export AWS_SDK_LOAD_CONFIG=1
 export AWS_PROFILE=sdk-dev-developer
@@ -179,4 +197,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-PATH=~/.console-ninja/.bin:$PATH
+
+. "/Users/dodi/.deno/env"
+
+ export PATH="/Users/dodi/.deno/bin:$PATH"
