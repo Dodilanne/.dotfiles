@@ -163,9 +163,9 @@ tmn() {
     tmux new -s $1
 }
 
-# clors
+# colors
 DARK_COLOR="kanagawa-dragon.yaml"
-LIGHT_COLOR="rose-pine-dawn.yaml"
+LIGHT_COLOR="bamboo-light.yaml"
 
 day() {
     export NEOVIM_BACKGROUND="light"
