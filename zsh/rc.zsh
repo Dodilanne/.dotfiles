@@ -87,7 +87,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
 
-export PATH="$PATH:/Users/dodi/.aiken/bin"
 export PATH="$PATH:$HOME/Documents/intek/bin"
 
 # opam configuration
@@ -180,6 +179,13 @@ night() {
 }
 alias nigth="night"
 
+# Initialize neovim background flag
+if hash is_dark_mode 2>/dev/null && is_dark_mode; then
+    export NEOVIM_BACKGROUND="dark"
+else
+    export NEOVIM_BACKGROUND="light"
+fi
+
 # AWS config
 export AWS_SDK_LOAD_CONFIG=1
 export AWS_PROFILE=sdk-dev-developer
@@ -201,3 +207,4 @@ esac
 . "/Users/dodi/.deno/env"
 
  export PATH="/Users/dodi/.deno/bin:$PATH"
+fpath=($fpath "/Users/dodi/.local/share/zsh-completions/site-functions/")
