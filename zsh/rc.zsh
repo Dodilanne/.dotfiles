@@ -164,7 +164,7 @@ tmn() {
 
 # colors
 DARK_COLOR="kanagawa-dragon.yaml"
-LIGHT_COLOR="bamboo-light.yaml"
+LIGHT_COLOR="rose-pine-dawn.yaml"
 
 day() {
     export NEOVIM_BACKGROUND="light"
@@ -188,7 +188,7 @@ fi
 
 # AWS config
 export AWS_SDK_LOAD_CONFIG=1
-export AWS_PROFILE=sdk-dev-developer
+export AWS_PROFILE=sdk-dev-devops
 export PASSPHRASE=Intekplus
 
 # Shell integrations
@@ -206,5 +206,7 @@ esac
 
 . "/Users/dodi/.deno/env"
 
- export PATH="/Users/dodi/.deno/bin:$PATH"
+export PATH="/Users/dodi/.deno/bin:$PATH"
 fpath=($fpath "/Users/dodi/.local/share/zsh-completions/site-functions/")
+
+export PATH="$HOME/.aiken/bin:$PATH"
