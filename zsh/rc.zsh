@@ -147,7 +147,6 @@ alias cat=bat
 alias gl="git log --all --decorate --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
 alias lg="lazygit"
 
-
 take() {
     mkdir -p $1
     cd $1
@@ -191,6 +190,12 @@ export AWS_SDK_LOAD_CONFIG=1
 export AWS_PROFILE=sdk-dev-devops
 export PASSPHRASE=Intekplus
 
+# Cardano
+export MAINNET0=addr1q9ydcxyv673l5fz5nq2y54rfcd82z8z5ja2cw55jd9psq94zhxgwp3qqym57jwq6hkcch205h7qt6e0hcxfxxdtlvjts2l2udl
+export MAINNET1=addr1q957m0ws6zjl6l07pl8dqa3s6q7zl857tsxdypc4zem5edskgv552vsywzgqyukhupc8qckzr4g2wqsmxl0tsssn4wrqt85etp
+export PREPROD0=addr_test1qpydcxyv673l5fz5nq2y54rfcd82z8z5ja2cw55jd9psq94zhxgwp3qqym57jwq6hkcch205h7qt6e0hcxfxxdtlvjtsffhupq
+export PREPROD1=addr_test1qp57m0ws6zjl6l07pl8dqa3s6q7zl857tsxdypc4zem5edskgv552vsywzgqyukhupc8qckzr4g2wqsmxl0tsssn4wrqg3fe87
+
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
@@ -210,3 +215,6 @@ export PATH="/Users/dodi/.deno/bin:$PATH"
 fpath=($fpath "/Users/dodi/.local/share/zsh-completions/site-functions/")
 
 export PATH="$HOME/.aiken/bin:$PATH"
+
+# Added by Windsurf
+export PATH="/Users/dodi/.codeium/windsurf/bin:$PATH"

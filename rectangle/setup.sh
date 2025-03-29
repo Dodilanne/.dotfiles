@@ -1,7 +1,7 @@
 echo "Setting up Rectangle..."
 
 defaults write com.knollsoft.Rectangle specified -dict-add keyCode -float 32 modifierFlags -float 917795
-defaults write com.knollsoft.Rectangle specifiedWidth -float 0.80
+defaults write com.knollsoft.Rectangle specifiedWidth -float 0.60
 defaults write com.knollsoft.Rectangle specifiedHeight -float 0.90
 
 defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 10
