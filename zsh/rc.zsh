@@ -162,7 +162,7 @@ tmn() {
 }
 
 # colors
-DARK_COLOR="kanso_zen.yaml"
+DARK_COLOR="kanso_ink.yaml"
 LIGHT_COLOR="kanso_pearl.yaml"
 
 day() {
