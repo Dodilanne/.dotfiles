@@ -162,8 +162,8 @@ tmn() {
 }
 
 # colors
-DARK_COLOR="kanagawa-dragon.yaml"
-LIGHT_COLOR="rose-pine-dawn.yaml"
+DARK_COLOR="kanso_zen.yaml"
+LIGHT_COLOR="kanso_pearl.yaml"
 
 day() {
     export NEOVIM_BACKGROUND="light"
@@ -195,6 +195,10 @@ export MAINNET0=addr1q9ydcxyv673l5fz5nq2y54rfcd82z8z5ja2cw55jd9psq94zhxgwp3qqym5
 export MAINNET1=addr1q957m0ws6zjl6l07pl8dqa3s6q7zl857tsxdypc4zem5edskgv552vsywzgqyukhupc8qckzr4g2wqsmxl0tsssn4wrqt85etp
 export PREPROD0=addr_test1qpydcxyv673l5fz5nq2y54rfcd82z8z5ja2cw55jd9psq94zhxgwp3qqym57jwq6hkcch205h7qt6e0hcxfxxdtlvjtsffhupq
 export PREPROD1=addr_test1qp57m0ws6zjl6l07pl8dqa3s6q7zl857tsxdypc4zem5edskgv552vsywzgqyukhupc8qckzr4g2wqsmxl0tsssn4wrqg3fe87
+export PREPROD2=addr_test1qzguq54zavjapmvma4p4mrw2sclammft2g09apnhyvde4yavezyp6rwd8fnd74tex9hyj2uf90k2mrkmppauylz9t8aq029kvz
+export PREPRODOTHER0=addr_test1qzdal7h03fx9u5mq0ud59smtq0785pl664u3sf6zu2u43wzh6l8l4vwa4as57mm5gf0a3epxfmgh255tqqk3nhultuwsny6jpz
+export MAINNET_ANVIL=addr1q8seyqha6kdmv9l8xxneek9zahghsmksnxu6lrmwwzh9dg8zrhhjr476dsq2fgmety6j3adv9t3wcycv0jp4ajr3z8tqvnajjn
+export MAINNET_TQUERI=addr1q9qur503rgx3duk9k5law0z09d9gq3mgt948cgmx8cv77ymlfwslu37u86tjlrljy9w60cf2c3dgh7pplmzg7f8zd35s9m3r5u
 
 # Shell integrations
 eval "$(fzf --zsh)"
@@ -218,3 +222,8 @@ export PATH="$HOME/.aiken/bin:$PATH"
 
 # Added by Windsurf
 export PATH="/Users/dodi/.codeium/windsurf/bin:$PATH"
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
