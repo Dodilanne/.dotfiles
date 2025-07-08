@@ -162,8 +162,8 @@ tmn() {
 }
 
 # colors
-DARK_COLOR="kanagawa-dragon.yaml"
-LIGHT_COLOR="rose-pine-dawn.yaml"
+DARK_COLOR="kanso_zen.yaml"
+LIGHT_COLOR="kanso_pearl.yaml"
 
 day() {
     export NEOVIM_BACKGROUND="light"
