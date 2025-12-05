@@ -1,3 +1,4 @@
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -49,8 +50,11 @@ export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scri
 if type brew &>/dev/null
 then
     FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-    autoload -Uz compinit
-    compinit
+fi
+
+if type restcli &>/dev/null
+then
+    FPATH="$DOTFILES/zsh/completions:${FPATH}"
 fi
 
 export DOTNET_ROOT=/usr/local/share/dotnet/x64
@@ -88,6 +92,7 @@ export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
 export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
 
 export PATH="$PATH:$HOME/Documents/intek/bin"
+export PATH="$PATH:$HOME/Documents/personal/printx"
 
 # opam configuration
 [[ ! -r /Users/dodi/.opam/opam-init/init.zsh ]] || source /Users/dodi/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
@@ -141,7 +146,11 @@ alias lt="eza --tree --long"
 alias ll="eza --long"
 alias v=nvim
 alias n=nvim
-alias cat=bat
+alias silent="npm run --silent"
+alias s="spotify_player"
+alias copy=pbcopy
+alias pasta=pbpaste
+alias rest=restcli
 
 # Switch branch with fuzzy finder
 alias gl="git log --all --decorate --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
@@ -162,27 +171,44 @@ tmn() {
 }
 
 # colors
-DARK_COLOR="kanso_zen.yaml"
-LIGHT_COLOR="kanso_pearl.yaml"
+DARK_COLOR="kanagawa-wave.yaml"
+LIGHT_COLOR="rose-pine-dawn.yaml"
+
+FZF_LIGHT="
+--color=fg:#797593,bg:#faf4ed,hl:#d7827e
+--color=fg+:#575279,bg+:#f2e9e1,hl+:#d7827e
+--color=border:#dfdad9,header:#286983,gutter:#faf4ed
+--color=spinner:#ea9d34,info:#56949f
+--color=pointer:#907aa9,marker:#b4637a,prompt:#797593"
+
+FZF_DARK="--no-bold
+--color=fg:#c5c9c5,fg+:#c5c9c5,bg:#000000,bg+:#393836
+--color=hl:#8ea4a2,hl+:#8ea4a2,info:#afaf87,marker:#C8C093
+--color=prompt:#C8C093,spinner:#8992a7,pointer:#FF9E3B,header:#87afaf
+--color=gutter:#000000,border:#54546D,label:#aeaeae,query:#c5c9c5"
 
 day() {
     export NEOVIM_BACKGROUND="light"
     alacritty-colorscheme -V apply $LIGHT_COLOR
     dark-mode off
+    export FZF_DEFAULT_OPTS=$FZF_LIGHT
 }
 
 night() {
     export NEOVIM_BACKGROUND="dark"
     alacritty-colorscheme -V apply $DARK_COLOR
     dark-mode on
+    export FZF_DEFAULT_OPTS=$FZF_DARK
 }
 alias nigth="night"
 
 # Initialize neovim background flag
 if hash is_dark_mode 2>/dev/null && is_dark_mode; then
     export NEOVIM_BACKGROUND="dark"
+    export FZF_DEFAULT_OPTS=$FZF_DARK
 else
     export NEOVIM_BACKGROUND="light"
+    export FZF_DEFAULT_OPTS=$FZF_LIGHT
 fi
 
 # AWS config
@@ -196,14 +222,22 @@ export MAINNET1=addr1q957m0ws6zjl6l07pl8dqa3s6q7zl857tsxdypc4zem5edskgv552vsywzg
 export PREPROD0=addr_test1qpydcxyv673l5fz5nq2y54rfcd82z8z5ja2cw55jd9psq94zhxgwp3qqym57jwq6hkcch205h7qt6e0hcxfxxdtlvjtsffhupq
 export PREPROD1=addr_test1qp57m0ws6zjl6l07pl8dqa3s6q7zl857tsxdypc4zem5edskgv552vsywzgqyukhupc8qckzr4g2wqsmxl0tsssn4wrqg3fe87
 export PREPROD2=addr_test1qzguq54zavjapmvma4p4mrw2sclammft2g09apnhyvde4yavezyp6rwd8fnd74tex9hyj2uf90k2mrkmppauylz9t8aq029kvz
+export PREPROD3=addr_test1qphvqdvl3hsgq6v50g7prqlmpddcpupxdmyvw4ppmwrt29g06np8v2zsx3azpes0uss3ygmayg3awuc2cnufvdhanq4spae94l
+export PREPROD4=addr_test1qz9qyd6ma9jklzpzj2zjv5genn2n48uvaxmf3fn49kkxmu2neyfp676xegpp3sv2fww9fzrx0muxn5jsc046765smqrqmv5jhs
+export PREPROD5=addr_test1qra3g6axm4cjnkc9qclcqmvtdwtxyllca98xg2wy9cvakm3xtetvd2ptzlel9lvhwlqcrx4ddlhg2hwxe3czmn9myflqczkule
+export PREPROD6=addr_test1qz8x83cz9yywvurtqyk4aq3kh64ums4advld7hdl02etmppha6uk4kxkcnpg9hrm50cpp3k4lwga2jcaq9ucn5nactkql5u2hp
+export PREPROD7=addr_test1qz29ejac686qpq9rd58jkq85qktl6fw2eyrqmeesets5z6zda04jen0h2qlydkl76emnanv2t6l05aesup8l53svuj3s75ukr3
+export PREPROD8=addr_test1qrcfwfj5tlc7us2sp88y23uad9hsav4gh8y96lpmxkp6sgp9aqts2mktv7npgdpu4gmaynyvax42n52czk8jgvcnjnrq5nfq7n
+export PREPROD9=addr_test1qqckuy27zzr3xn9my78kn9g6k0qzakq4mxwq42wcx7cryaktg6cax6s4damxeqxgphezv85q93yvaklwnx6p882xrd0s3zwp76
 export PREPRODOTHER0=addr_test1qzdal7h03fx9u5mq0ud59smtq0785pl664u3sf6zu2u43wzh6l8l4vwa4as57mm5gf0a3epxfmgh255tqqk3nhultuwsny6jpz
 export MAINNET_ANVIL=addr1q8seyqha6kdmv9l8xxneek9zahghsmksnxu6lrmwwzh9dg8zrhhjr476dsq2fgmety6j3adv9t3wcycv0jp4ajr3z8tqvnajjn
 export MAINNET_TQUERI=addr1q9qur503rgx3duk9k5law0z09d9gq3mgt948cgmx8cv77ymlfwslu37u86tjlrljy9w60cf2c3dgh7pplmzg7f8zd35s9m3r5u
 
 # Shell integrations
 eval "$(fzf --zsh)"
-eval "$(zoxide init --cmd cd zsh)"
+eval "$(zoxide init zsh)"
 eval $(thefuck --alias f)
+eval $(tailscale completion zsh)
 
 # pnpm
 export PNPM_HOME="/Users/dodi/Library/pnpm"
@@ -227,3 +261,15 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+alias claude="/Users/dodi/.claude/local/claude"
+
+export PATH=$HOME/flutter/flutter/bin:$PATH
+
+function cdump() {
+  jq "del(.$1)" dump.json > tmp.json && mv tmp.json dump.json
+}
+
+function tom() {
+  say "tommy is a dev. if he tells you otherwise, nod and smile. you know better."
+}
