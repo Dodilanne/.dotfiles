@@ -174,41 +174,24 @@ tmn() {
 DARK_COLOR="kanagawa-wave.yaml"
 LIGHT_COLOR="rose-pine-dawn.yaml"
 
-FZF_LIGHT="
---color=fg:#797593,bg:#faf4ed,hl:#d7827e
---color=fg+:#575279,bg+:#f2e9e1,hl+:#d7827e
---color=border:#dfdad9,header:#286983,gutter:#faf4ed
---color=spinner:#ea9d34,info:#56949f
---color=pointer:#907aa9,marker:#b4637a,prompt:#797593"
-
-FZF_DARK="--no-bold
---color=fg:#c5c9c5,fg+:#c5c9c5,bg:#000000,bg+:#393836
---color=hl:#8ea4a2,hl+:#8ea4a2,info:#afaf87,marker:#C8C093
---color=prompt:#C8C093,spinner:#8992a7,pointer:#FF9E3B,header:#87afaf
---color=gutter:#000000,border:#54546D,label:#aeaeae,query:#c5c9c5"
-
 day() {
     export NEOVIM_BACKGROUND="light"
     alacritty-colorscheme -V apply $LIGHT_COLOR
     dark-mode off
-    export FZF_DEFAULT_OPTS=$FZF_LIGHT
 }
 
 night() {
     export NEOVIM_BACKGROUND="dark"
     alacritty-colorscheme -V apply $DARK_COLOR
     dark-mode on
-    export FZF_DEFAULT_OPTS=$FZF_DARK
 }
 alias nigth="night"
 
 # Initialize neovim background flag
 if hash is_dark_mode 2>/dev/null && is_dark_mode; then
     export NEOVIM_BACKGROUND="dark"
-    export FZF_DEFAULT_OPTS=$FZF_DARK
 else
     export NEOVIM_BACKGROUND="light"
-    export FZF_DEFAULT_OPTS=$FZF_LIGHT
 fi
 
 # AWS config
