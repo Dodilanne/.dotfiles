@@ -1,3 +1,6 @@
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+  zmodload zsh/zprof
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -20,20 +23,20 @@ if [ ! -d "$ZINIT_HOME" ]; then
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-# Source/Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Add in Powerlevel10k
+autoload -Uz compinit
+compinit -C -u
+
+ZINIT[COMPINIT_OPTS]="-C"
+
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
-# Add in zsh plugins
-zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid; zinit light zsh-users/zsh-syntax-highlighting
+zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
+zinit ice wait lucid; zinit light Aloxaf/fzf-tab
+zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
-
-# Load completions
-autoload -Uz compinit && compinit
 
 zinit cdreplay -q
 
@@ -47,29 +50,13 @@ export EDITOR=nvim
 
 export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
 
-if type brew &>/dev/null
-then
-    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-fi
-
-if type restcli &>/dev/null
-then
-    FPATH="$DOTFILES/zsh/completions:${FPATH}"
-fi
-
-export DOTNET_ROOT=/usr/local/share/dotnet/x64
-export PATH=$PATH:$DOTNET_ROOT
-
-export MONO_BIN=/Library/Frameworks/Mono.framework/Versions/6.12.0/bin
-export PATH=$PATH:$MONO_BIN
+FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
 
-# heroku autocomplete setup
-HEROKU_AC_ZSH_SETUP_PATH=/Users/dodi/Library/Caches/heroku/autocomplete/zsh_setup && test -f $HEROKU_AC_ZSH_SETUP_PATH && source $HEROKU_AC_ZSH_SETUP_PATH;
+source ~/.zsh_cache/pyenv_path.zsh
+source ~/.zsh_cache/pyenv_init.zsh
 
 export ANDROID_SDK="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_SDK/platform-tools:$PATH"
@@ -82,9 +69,6 @@ export PATH=/opt/homebrew/opt/llvm/bin:$PATH
 # golang
 export PATH=$HOME/go/bin:$PATH
 
-# bun completions
-[ -s "/Users/dodi/.bun/_bun" ] && source "/Users/dodi/.bun/_bun"
-# bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
@@ -94,15 +78,10 @@ export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
 export PATH="$PATH:$HOME/Documents/intek/bin"
 export PATH="$PATH:$HOME/Documents/personal/printx"
 
-# opam configuration
-[[ ! -r /Users/dodi/.opam/opam-init/init.zsh ]] || source /Users/dodi/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
-
 export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
-export NVM_DIR="${HOME}/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(fnm env --use-on-cd --shell zsh)"
 
 # Keybindings
 bindkey -v
@@ -212,11 +191,9 @@ export PREPRODOTHER0=addr_test1qzdal7h03fx9u5mq0ud59smtq0785pl664u3sf6zu2u43wzh6
 export MAINNET_ANVIL=addr1q8seyqha6kdmv9l8xxneek9zahghsmksnxu6lrmwwzh9dg8zrhhjr476dsq2fgmety6j3adv9t3wcycv0jp4ajr3z8tqvnajjn
 export MAINNET_TQUERI=addr1q9qur503rgx3duk9k5law0z09d9gq3mgt948cgmx8cv77ymlfwslu37u86tjlrljy9w60cf2c3dgh7pplmzg7f8zd35s9m3r5u
 
-# Shell integrations
-eval "$(fzf --zsh)"
-eval "$(zoxide init zsh)"
-eval $(thefuck --alias f)
-eval $(tailscale completion zsh)
+source ~/.zsh_cache/fzf.zsh
+source ~/.zsh_cache/zoxide.zsh
+source ~/.zsh_cache/tailscale.zsh
 
 # pnpm
 export PNPM_HOME="/Users/dodi/Library/pnpm"
@@ -252,5 +229,20 @@ function tom() {
   say "tommy is a dev. if he tells you otherwise, nod and smile. you know better."
 }
 
+regen-zsh-cache() {
+  mkdir -p ~/.zsh_cache
+  pyenv init --path > ~/.zsh_cache/pyenv_path.zsh
+  pyenv init - > ~/.zsh_cache/pyenv_init.zsh
+  tailscale completion zsh > ~/.zsh_cache/tailscale.zsh
+  fzf --zsh > ~/.zsh_cache/fzf.zsh
+  zoxide init zsh > ~/.zsh_cache/zoxide.zsh
+  echo "Cache regenerated."
+}
+
 # opencode
 export PATH=/Users/dodi/.opencode/bin:$PATH
+
+if [ -n "${ZSH_DEBUGRC+1}" ]; then
+  zprof
+fi
+
