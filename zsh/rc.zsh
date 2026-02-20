@@ -135,7 +135,7 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 # Aliases
 alias pn=pnpm
 alias love="/Applications/love.app/Contents/MacOS/love"
-alias gu="gitui"
+alias gu="lazygit"
 alias gf="git fetch"
 alias gs="git status"
 alias gvim="nvim --listen 127.0.0.1:55432"
@@ -151,6 +151,8 @@ alias s="spotify_player"
 alias copy=pbcopy
 alias pasta=pbpaste
 alias rest=restcli
+alias tsh="tailscale switch home"
+alias tsw="tailscale switch work"
 
 # Switch branch with fuzzy finder
 alias gl="git log --all --decorate --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
@@ -170,19 +172,13 @@ tmn() {
     tmux new -s $1
 }
 
-# colors
-DARK_COLOR="kanagawa-wave.yaml"
-LIGHT_COLOR="rose-pine-dawn.yaml"
-
 day() {
     export NEOVIM_BACKGROUND="light"
-    alacritty-colorscheme -V apply $LIGHT_COLOR
     dark-mode off
 }
 
 night() {
     export NEOVIM_BACKGROUND="dark"
-    alacritty-colorscheme -V apply $DARK_COLOR
     dark-mode on
 }
 alias nigth="night"
@@ -245,7 +241,6 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-alias claude="/Users/dodi/.claude/local/claude"
 
 export PATH=$HOME/flutter/flutter/bin:$PATH
 
@@ -256,3 +251,6 @@ function cdump() {
 function tom() {
   say "tommy is a dev. if he tells you otherwise, nod and smile. you know better."
 }
+
+# opencode
+export PATH=/Users/dodi/.opencode/bin:$PATH
