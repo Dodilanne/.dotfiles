@@ -1,6 +1,6 @@
 alt + shift + ctrl - w : open -a "Finder"
 alt + shift + ctrl - f : open -a "Spotify"
-alt + shift + ctrl - p : open -a "Godot"
+alt + shift + ctrl - p : open -a "Preview"
 alt + shift + ctrl - b : open -a "HTTPie"
 
 alt + shift + ctrl - a : osascript -e 'tell application "System Events" to set frontmost of first process whose name is "qemu-system-aarch64" to true'
