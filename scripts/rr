@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+requests=$(gh search prs --review-requested=@me --state=open --json url,title,repository,author,updatedAt)
+
+if [ -z "$requests" ] || [ "$requests" = "[]" ]; then
+  echo "No pending review requests."
+  exit 0
+fi
+
+selected=$(echo "$requests" | jq -r 'to_entries[] | "\(.key)\t@\(.value.author.login) | \(.value.title) | \(.value.repository.name) | \(.value.updatedAt | split("T")[0])"' | fzf --header "Select a PR to open" --with-nth=2..)
+
+if [ -n "$selected" ]; then
+  index=$(echo "$selected" | cut -f1)
+  url=$(echo "$requests" | jq -r ".[$index].url")
+  gh pr view --web "$url"
+fi
