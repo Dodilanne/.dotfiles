@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+prs=$(gh api graphql -f query='
+  query {
+    search(query: "author:@me state:open is:pr", type: ISSUE, first: 50) {
+      nodes {
+        ... on PullRequest {
+          url
+          title
+          updatedAt
+          reviewDecision
+          repository { name nameWithOwner }
+        }
+      }
+    }
+  }
+' --jq '.data.search.nodes')
+
+if [ -z "$prs" ] || [ "$prs" = "[]" ]; then
+  echo "No open PRs created by you."
+  exit 0
+fi
+
+selected=$(echo "$prs" | jq -r 'to_entries[] | "\(.key)\t[\(.value.reviewDecision // "" | if . == "APPROVED" then "APPROVED" elif . == "CHANGES_REQUESTED" then "CHANGES" else "PENDING" end)] \(.value.title) | \(.value.repository.name) | \(.value.updatedAt | split("T")[0])"' | fzf --header "Select a PR to open" --with-nth=2..)
+
+if [ -n "$selected" ]; then
+  index=$(echo "$selected" | cut -f1)
+  url=$(echo "$prs" | jq -r ".[$index].url")
+  gh pr view --web "$url"
+fi
