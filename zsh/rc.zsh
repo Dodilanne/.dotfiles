@@ -81,7 +81,7 @@ export PATH="$PATH:$HOME/Documents/personal/printx"
 export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
-eval "$(fnm env --use-on-cd --shell zsh)"
+eval "$(fnm env --use-on-cd --shell zsh)" > /dev/null 2>&1
 
 # Keybindings
 bindkey -v
@@ -190,6 +190,7 @@ export PREPROD9=addr_test1qqckuy27zzr3xn9my78kn9g6k0qzakq4mxwq42wcx7cryaktg6cax6
 export PREPRODOTHER0=addr_test1qzdal7h03fx9u5mq0ud59smtq0785pl664u3sf6zu2u43wzh6l8l4vwa4as57mm5gf0a3epxfmgh255tqqk3nhultuwsny6jpz
 export MAINNET_ANVIL=addr1q8seyqha6kdmv9l8xxneek9zahghsmksnxu6lrmwwzh9dg8zrhhjr476dsq2fgmety6j3adv9t3wcycv0jp4ajr3z8tqvnajjn
 export MAINNET_TQUERI=addr1q9qur503rgx3duk9k5law0z09d9gq3mgt948cgmx8cv77ymlfwslu37u86tjlrljy9w60cf2c3dgh7pplmzg7f8zd35s9m3r5u
+export PABZ_VAULT=addr_test1qphd08gg02s6kqcfttxkgrjkn8mvpq24uz4zynft3l8j6vfn06pkwzamcg5w8sn3rzl39kr9ql953kcvdm4u7x4pqz3q6dcfpk
 
 source ~/.zsh_cache/fzf.zsh
 source ~/.zsh_cache/zoxide.zsh
