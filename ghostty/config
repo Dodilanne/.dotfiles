@@ -1,4 +1,4 @@
-theme = dark:kanso-ink,light:kanso-pearl
+theme = dark:kanso-mist,light:kanso-pearl
 font-family = JetBrainsMonoNL Nerd Font Mono
 macos-option-as-alt = true
 cursor-style-blink = false
