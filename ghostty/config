@@ -1,0 +1,7 @@
+theme = dark:kanso-ink,light:kanso-pearl
+font-family = JetBrainsMonoNL Nerd Font Mono
+macos-option-as-alt = true
+cursor-style-blink = false
+mouse-hide-while-typing = true
+cursor-click-to-move = true
+window-padding-x = 16
