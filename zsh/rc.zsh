@@ -48,6 +48,8 @@ source $HOME/.env.sh
 export VISUAL=nvim
 export EDITOR=nvim
 
+export OPENCODE_EXPERIMENTAL_MARKDOWN=false
+
 export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
 
 FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
