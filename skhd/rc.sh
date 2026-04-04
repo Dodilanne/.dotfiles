@@ -1,6 +1,6 @@
 # alt + shift + ctrl - q : open -a ""
 alt + shift + ctrl - w : open -a "Finder"
-alt + shift + ctrl - f : open -a "Spotify"
+alt + shift + ctrl - f : open -a "Music"
 alt + shift + ctrl - p : open -a "Preview"
 alt + shift + ctrl - b : open -a "Godot"
 
