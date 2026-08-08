@@ -63,8 +63,6 @@ source ~/.zsh_cache/pyenv_init.zsh
 export ANDROID_SDK="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_SDK/platform-tools:$PATH"
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
 # llvm
 export PATH=/opt/homebrew/opt/llvm/bin:$PATH
 
@@ -119,13 +117,13 @@ alias love="/Applications/love.app/Contents/MacOS/love"
 alias gu="lazygit"
 alias gf="git fetch"
 alias gs="git status"
-alias gvim="nvim --listen 127.0.0.1:55432"
+# alias gvim="nvim --listen 127.0.0.1:55432"
 alias b="cd .."
 alias c=clear
 alias ls=eza
 alias lt="eza --tree --long"
 alias ll="eza --long"
-alias v=nvim
+alias v=vim
 alias n=nvim
 alias silent="npm run --silent"
 alias s="spotify_player"
