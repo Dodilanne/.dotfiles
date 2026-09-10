@@ -132,6 +132,7 @@ alias pasta=pbpaste
 alias rest=restcli
 alias tsh="tailscale switch home"
 alias tsw="tailscale switch work"
+alias nvide=neovide
 
 # Switch branch with fuzzy finder
 alias gl="git log --all --decorate --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
