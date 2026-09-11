@@ -33,7 +33,7 @@ ZINIT[COMPINIT_OPTS]="-C"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 zinit ice wait lucid; zinit light zsh-users/zsh-syntax-highlighting
-zinit ice wait lucid; zinit light zsh-users/zsh-autosuggestions
+zinit ice wait lucid atload'!_zsh_autosuggest_start'; zinit light zsh-users/zsh-autosuggestions
 zinit ice wait lucid; zinit light Aloxaf/fzf-tab
 zinit ice wait lucid blockf atpull'zinit creinstall -q .'
 zinit light zsh-users/zsh-completions
