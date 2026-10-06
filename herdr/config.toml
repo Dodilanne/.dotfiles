@@ -1,0 +1,33 @@
+onboarding = false
+
+[theme]
+name = "kanagawa"
+auto_switch = true
+light_name = "kanagawa-lotus"
+dark_name = "kanagawa"
+
+[theme.custom]
+panel_bg = "transparent"
+
+[ui]
+tab_bar_position = "bottom"
+pane_gaps = false
+pane_outer_borders = false
+prompt_new_tab_name = false
+sidebar_collapsed_mode = "hidden"
+
+status_indicators = "symbols"
+[ui.sound]
+enabled = true
+
+[keys]
+prefix = "ctrl+a"
+split_horizontal = "prefix+minus"
+split_vertical = "prefix+|"
+switch_tab = ""
+switch_workspace = "prefix+1..9"
+detach = "prefix+d"
+zoom = "prefix+m"
+
+[ui.toast]
+delivery = "system"
