@@ -14,7 +14,7 @@
 
   alt + shift + ctrl - m : open -a "Mail"
   alt + shift + ctrl - n : open -a "Xournal++"; obsws-cli scene switch Xournal++
-  alt + shift + ctrl - o : open -a "OBS"
+  alt + shift + ctrl - o : open -a "Obsidian"
   
   alt + shift + ctrl - z : open -a "Messages"
   alt + shift + ctrl - x : open -a "Firefox"
