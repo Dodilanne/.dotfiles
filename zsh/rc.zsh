@@ -1,3 +1,7 @@
+if [ -n "$GHOSTTY_RESOURCES_DIR" ]; then
+    builtin source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
+fi
+
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
   zmodload zsh/zprof
 fi
@@ -7,11 +11,6 @@ fi
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-if [[ -f "/opt/homebrew/bin/brew" ]] then
-  # If you're using macOS, you'll want this enabled
-  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Set the directory we want to store zinit and plugins
@@ -43,43 +42,10 @@ zinit cdreplay -q
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source $HOME/.env.sh
-
-export VISUAL=nvim
-export EDITOR=nvim
-
-export OPENCODE_EXPERIMENTAL_MARKDOWN=false
-
-export PATH="$PATH:/usr/local/sbin:$DOTFILES/bin:$HOME/.local/bin:$DOTFILES/scripts/"
-
 FPATH="/opt/homebrew/share/zsh/site-functions:${FPATH}"
+fpath=($fpath "$HOME/.local/share/zsh-completions/site-functions/")
 
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-source ~/.zsh_cache/pyenv_path.zsh
 source ~/.zsh_cache/pyenv_init.zsh
-
-export ANDROID_SDK="$HOME/Library/Android/sdk"
-export PATH="$ANDROID_SDK/platform-tools:$PATH"
-
-# llvm
-export PATH=/opt/homebrew/opt/llvm/bin:$PATH
-
-# golang
-export PATH=$HOME/go/bin:$PATH
-
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-export PATH="/opt/homebrew/opt/icu4c/bin:$PATH"
-export PATH="/opt/homebrew/opt/icu4c/sbin:$PATH"
-
-export PATH="$PATH:$HOME/Documents/intek/bin"
-export PATH="$PATH:$HOME/Documents/personal/printx"
-
-export GOPATH="$HOME/go"; export GOROOT="$HOME/.go"; export PATH="$GOPATH/bin:$PATH"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
-alias gvm="$GOPATH/bin/g"; # g-install: do NOT edit, see https://github.com/stefanmaric/g
 
 eval "$(fnm env --use-on-cd --shell zsh)" > /dev/null 2>&1
 
@@ -111,57 +77,7 @@ zstyle ':completion:*' menu no
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
-# Aliases
-alias pn=pnpm
-alias love="/Applications/love.app/Contents/MacOS/love"
-alias gu="lazygit"
-alias gf="git fetch"
-alias gs="git status"
-# alias gvim="nvim --listen 127.0.0.1:55432"
-alias b="cd .."
-alias c=clear
-alias ls=eza
-alias lt="eza --tree --long"
-alias ll="eza --long"
-alias v=vim
-alias n=nvim
-alias silent="npm run --silent"
-alias s="spotify_player"
-alias copy=pbcopy
-alias pasta=pbpaste
-alias rest=restcli
-alias tsh="tailscale switch home"
-alias tsw="tailscale switch work"
-alias nvide=neovide
-
-# Switch branch with fuzzy finder
-alias gl="git log --all --decorate --graph --pretty=format:'%C(yellow)%h %Cred%ad %Cblue%an%Cgreen%d %Creset%s' --date=short"
-alias lg="lazygit"
-
-take() {
-    mkdir -p $1
-    cd $1
-}
-
-# tmux
-tma() {
-    tmux attach -t $1
-}
-
-tmn() {
-    tmux new -s $1
-}
-
-day() {
-    export NEOVIM_BACKGROUND="light"
-    dark-mode off
-}
-
-night() {
-    export NEOVIM_BACKGROUND="dark"
-    dark-mode on
-}
-alias nigth="night"
+source "$DOTFILES/zsh/aliases.zsh"
 
 # Initialize neovim background flag
 if hash is_dark_mode 2>/dev/null && is_dark_mode; then
@@ -170,9 +86,6 @@ else
     export NEOVIM_BACKGROUND="light"
 fi
 
-# AWS config
-export AWS_SDK_LOAD_CONFIG=1
-export AWS_PROFILE=sdk-dev-devops
 export PASSPHRASE=Intekplus
 
 # Cardano
@@ -197,54 +110,11 @@ source ~/.zsh_cache/fzf.zsh
 source ~/.zsh_cache/zoxide.zsh
 source ~/.zsh_cache/tailscale.zsh
 
-# pnpm
-export PNPM_HOME="/Users/dodi/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
-. "/Users/dodi/.deno/env"
-
-export PATH="/Users/dodi/.deno/bin:$PATH"
-fpath=($fpath "/Users/dodi/.local/share/zsh-completions/site-functions/")
-
-export PATH="$HOME/.aiken/bin:$PATH"
-
-# Added by Windsurf
-export PATH="/Users/dodi/.codeium/windsurf/bin:$PATH"
-
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-
-export OTEL_SDK_DISABLED="true"
-
-export PATH=$HOME/flutter/flutter/bin:$PATH
-
-function cdump() {
-  jq "del(.$1)" dump.json > tmp.json && mv tmp.json dump.json
+reset_cursor_shape_and_color() {
+  print -n '\e[2 q\e]112\a'
 }
-
-function tom() {
-  say "tommy is a dev. if he tells you otherwise, nod and smile. you know better."
-}
-
-regen-zsh-cache() {
-  mkdir -p ~/.zsh_cache
-  pyenv init --path > ~/.zsh_cache/pyenv_path.zsh
-  pyenv init - > ~/.zsh_cache/pyenv_init.zsh
-  tailscale completion zsh > ~/.zsh_cache/tailscale.zsh
-  fzf --zsh > ~/.zsh_cache/fzf.zsh
-  zoxide init zsh > ~/.zsh_cache/zoxide.zsh
-  echo "Cache regenerated."
-}
-
-# opencode
-export PATH=/Users/dodi/.opencode/bin:$PATH
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd reset_cursor_shape_and_color
 
 if [ -n "${ZSH_DEBUGRC+1}" ]; then
   zprof
