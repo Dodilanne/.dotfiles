@@ -116,7 +116,7 @@ export PABZ_VAULT=addr_test1qphd08gg02s6kqcfttxkgrjkn8mvpq24uz4zynft3l8j6vfn06pk
 export CURATOR=addr_test1qzwm5tevv7spzy86wz798eyk4d7jp8qdq0jmk4kfe90n8wd7wk62tyqtsx2psld6kh8xgxn599mkdp7t8mygjqwrhklqyv0d9g
 export ISSUER=addr_test1qqpwee3z78t8hvlaqxemlyh9q86u6kcxru7rhqx6cqzeeadc3pwh8dl6j3cd567lcmmgs5jlpt878uta5pdku6v3fgms65f8l6
 
-export FZF_DEFAULT_OPTS='--color=16,bg+:-1,gutter:-1,fg+:reverse'
+export FZF_DEFAULT_OPTS='--color=16,bg+:-1,gutter:-1,fg+:-1,hl:5,hl+:5'
 source ~/.zsh_cache/fzf.zsh
 source ~/.zsh_cache/zoxide.zsh
 source ~/.zsh_cache/tailscale.zsh
