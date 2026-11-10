@@ -30,5 +30,6 @@ path=(
   $ANDROID_HOME/emulator
   $HOME/.pub-cache/bin
   "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
+  /Applications/Xcode.app/Contents/Developer/usr/bin
 )
 export PATH

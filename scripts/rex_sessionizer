@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+cache="${XDG_CACHE_HOME:-$HOME/.cache}/rex_sessionizer"
+mkdir -p "${cache%/*}" && touch "$cache"
+list_cmd="fd -d 4 -H -E node_modules --base-directory ~/Documents '(turbo.json)|(\.git)(/)?\$' | sd '(turbo.json)|(\.git)(/)?\$' '' | sort -u | tee '$cache.tmp' && mv '$cache.tmp' '$cache'"
+selected=$(fzf --bind "start:reload:$list_cmd" < "$cache")
+[[ -z $selected ]] && exit 0
+selected="$HOME/Documents/${selected%/}"
+selected_name=$(basename "$selected" | tr . _)
+session_id=$(rex ls --json | jq -r --arg name "$selected_name" '.sessions[] | select(.label == $name) | .session_id' | head -n1)
+if [[ -z $session_id ]]; then
+  session_id=$(rex new "$selected_name" -c "$selected" --json | jq -r .session_id)
+fi
+rex do session.select session_id="$session_id"

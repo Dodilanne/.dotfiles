@@ -1,5 +1,7 @@
 theme = dark:kanso-zen,light:kanso-pearl
 font-family = JetBrainsMonoNL Nerd Font Mono
+font-size = 14
+font-thicken = true
 macos-option-as-alt = true
 cursor-style-blink = false
 cursor-style = block

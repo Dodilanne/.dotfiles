@@ -56,6 +56,14 @@ bindkey '^y' autosuggest-accept
 bindkey '^n' history-search-forward
 bindkey '^[w' kill-region
 bindkey -s '^f' "tmux_sessionizer\n"
+bindkey -s '^o' "tmux attach -t spotatui\n"
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd 'v' edit-command-line
+bindkey -M viins '^[[27;5;13~' accept-line
+bindkey -M viins '^[[13;5u' accept-line
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^H' backward-delete-char
 
 # History
 HISTSIZE=5000
@@ -105,7 +113,10 @@ export PREPRODOTHER0=addr_test1qzdal7h03fx9u5mq0ud59smtq0785pl664u3sf6zu2u43wzh6
 export MAINNET_ANVIL=addr1q8seyqha6kdmv9l8xxneek9zahghsmksnxu6lrmwwzh9dg8zrhhjr476dsq2fgmety6j3adv9t3wcycv0jp4ajr3z8tqvnajjn
 export MAINNET_TQUERI=addr1q9qur503rgx3duk9k5law0z09d9gq3mgt948cgmx8cv77ymlfwslu37u86tjlrljy9w60cf2c3dgh7pplmzg7f8zd35s9m3r5u
 export PABZ_VAULT=addr_test1qphd08gg02s6kqcfttxkgrjkn8mvpq24uz4zynft3l8j6vfn06pkwzamcg5w8sn3rzl39kr9ql953kcvdm4u7x4pqz3q6dcfpk
+export CURATOR=addr_test1qzwm5tevv7spzy86wz798eyk4d7jp8qdq0jmk4kfe90n8wd7wk62tyqtsx2psld6kh8xgxn599mkdp7t8mygjqwrhklqyv0d9g
+export ISSUER=addr_test1qqpwee3z78t8hvlaqxemlyh9q86u6kcxru7rhqx6cqzeeadc3pwh8dl6j3cd567lcmmgs5jlpt878uta5pdku6v3fgms65f8l6
 
+export FZF_DEFAULT_OPTS='--color=16,bg+:-1,gutter:-1,fg+:reverse'
 source ~/.zsh_cache/fzf.zsh
 source ~/.zsh_cache/zoxide.zsh
 source ~/.zsh_cache/tailscale.zsh

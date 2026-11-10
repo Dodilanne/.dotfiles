@@ -42,11 +42,13 @@ tmn() {
 
 day() {
     export NEOVIM_BACKGROUND="light"
+    sed -i '' 's/theme = ".*"/theme = "kanso-pearl"/' ${HOME}/.config/helix/config.toml
     dark-mode off
 }
 
 night() {
     export NEOVIM_BACKGROUND="dark"
+    sed -i '' 's/theme = ".*"/theme = "kanso-zen"/' ${HOME}/.config/helix/config.toml
     dark-mode on
 }
 alias nigth="night"
