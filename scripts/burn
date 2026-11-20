@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+cleanup() {
+    status=$?
+    echo
+    echo "cleaning up..."
+    hdiutil detach /Volumes/cd 2>/dev/null
+    rm -rf /tmp/cd
+    rm -f ~/cd.dmg
+    echo "done"
+    exit "$status"
+}
+trap cleanup EXIT
+
+echo "checking for disk..."
+if ! drutil status | grep -Eq "Writability: appendable, blank"; then
+    echo "no blank disk available" >&2
+    exit 1
+fi
+echo "blank disk available"
+
+read -e -r -p "path? (default: .) " path
+if [[ $path == "" ]]; then path="."; fi
+path=${path/#\~/$HOME} # expand ~
+
+echo "creating image..."
+hdiutil create -size 700m -fs HFS+ -volname cd ~/cd.dmg 2> >(grep -v 'WARNING' >&2) || exit 1
+
+echo "attaching..."
+hdiutil attach ~/cd.dmg 2> >(grep -v 'WARNING' >&2) || exit 1
+
+echo "copying files to image..."
+shopt -s nullglob
+cp "$path"/*.{wav,mp3,aiff} /Volumes/cd/ || exit 1
+
+echo
+ls -f /Volumes/cd | grep -v '^\.'
+echo
+
+read -r -n 1 -p "burn? (y/N) " ans; echo
+if [[ ! $ans =~ ^[yY]$ ]]; then
+    echo "canceled" >&2
+    exit 1
+fi
+
+echo "burning files..."
+drutil burn -audio /Volumes/cd
+echo "done"
