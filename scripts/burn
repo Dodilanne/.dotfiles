@@ -5,7 +5,6 @@ cleanup() {
     echo
     echo "cleaning up..."
     hdiutil detach /Volumes/cd 2>/dev/null
-    rm -rf /tmp/cd
     rm -f ~/cd.dmg
     echo "done"
     exit "$status"
